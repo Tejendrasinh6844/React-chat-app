@@ -1,17 +1,21 @@
-import List from "./components/list/List"
-import Chat from "./components/chat/Chat"
-import Details from "./components/details/Details"
-import './App.css'
-
-const  App = () => {
-  
-
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { lazy } from "react"
+const Home = lazy(() => import("./pages/Home"))
+const Login = lazy(() => import("./pages/login"))
+const Chat = lazy(() => import("./pages/Chat"))
+const Group = lazy(() => import("./pages/Group"))
+function App() {
   return (
-    <div className='container'>
-    <List/>
-    <Chat/>
-    <Details/>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/chat/:chatId" element={<Chat/>} />
+      <Route path="/group" element={<Group/>} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/*" element={<h1>404 Page not found</h1>} />
+    </Routes>
+      
+    </BrowserRouter>
   )
 }
 
